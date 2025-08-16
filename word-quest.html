@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Harry Potter: The English Horcrux Hunt</title>
   <link href="https://fonts.googleapis.com/css2?family=Medieval+Sharp&display=swap" rel="stylesheet">
   <style>
@@ -13,68 +13,97 @@
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: url('https://images.unsplash.com/photo-1589884672035-638e58177a88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1589884672035-638e58177a88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
       background-size: cover;
       color: #e0d0a0;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 15px;
+      line-height: 1.6;
     }
 
     .container {
-      background: rgba(20, 20, 40, 0.85);
+      background: rgba(20, 20, 40, 0.9);
       backdrop-filter: blur(10px);
       border: 3px solid #8b0000;
       border-radius: 20px;
-      padding: 30px;
+      padding: 20px;
       width: 100%;
       max-width: 700px;
       box-shadow: 0 0 30px rgba(139, 0, 0, 0.6);
       text-align: center;
-      font-size: 1.1rem;
+      font-size: 1rem;
+    }
+
+    @media (min-width: 600px) {
+      .container {
+        font-size: 1.1rem;
+        padding: 30px;
+      }
     }
 
     h1 {
       font-family: 'Medieval Sharp', cursive;
-      font-size: 2.8rem;
+      font-size: 1.8rem;
       color: #d4af37;
       text-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
       margin-bottom: 10px;
+    }
+
+    @media (min-width: 600px) {
+      h1 {
+        font-size: 2.8rem;
+      }
     }
 
     h2 {
       font-family: 'Medieval Sharp', cursive;
       color: #964B00;
       margin: 20px 0;
+      font-size: 1.4rem;
     }
 
     p {
-      line-height: 1.6;
       margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+
+    @media (min-width: 600px) {
+      p {
+        font-size: 1.1rem;
+      }
     }
 
     .instructions {
       background: rgba(139, 0, 0, 0.3);
       border-radius: 10px;
-      padding: 15px;
+      padding: 12px;
       margin-bottom: 20px;
       font-style: italic;
+      font-size: 0.9rem;
+    }
+
+    @media (min-width: 600px) {
+      .instructions {
+        font-size: 1rem;
+        padding: 15px;
+      }
     }
 
     .horcruxes {
       display: flex;
       justify-content: center;
-      gap: 15px;
+      gap: 10px;
       margin: 20px 0;
       flex-wrap: wrap;
     }
 
     .horcrux {
-      width: 60px;
-      height: 60px;
+      width: 45px;
+      height: 45px;
       background: url('https://img.freepik.com/premium-vector/magic-dark-ancient-symbol_91843-35.jpg?w=300') no-repeat center;
       background-size: cover;
       border: 2px solid #555;
@@ -82,6 +111,13 @@
       opacity: 0.3;
       box-shadow: none;
       transition: 0.3s;
+    }
+
+    @media (min-width: 600px) {
+      .horcrux {
+        width: 60px;
+        height: 60px;
+      }
     }
 
     .horcrux.found {
@@ -109,41 +145,97 @@
     .option-btn {
       background: rgba(100, 0, 0, 0.6);
       color: #fff;
-      padding: 12px;
+      padding: 14px;
       border: 2px solid #8b0000;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
       transition: 0.3s;
-      text-align: left;
-      font-size: 1.1rem;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    @media (min-width: 600px) {
+      .option-btn {
+        font-size: 1.1rem;
+        padding: 16px;
+        text-align: left;
+      }
     }
 
     .option-btn:hover {
       background: #8b0000;
-      transform: translateX(5px);
+      transform: translateY(-2px);
     }
 
     .feedback {
       margin: 20px 0;
       font-weight: bold;
-      min-height: 24px;
-      font-size: 1.2rem;
+      min-height: 28px;
+      font-size: 1.1rem;
     }
 
     .success { color: #32cd32; }
     .error { color: #ff6b6b; }
 
     .voldemort {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       color: #8b0000;
       text-shadow: 0 0 10px red;
       margin: 20px 0;
       font-weight: bold;
     }
 
+    @media (min-width: 600px) {
+      .voldemort {
+        font-size: 1.8rem;
+      }
+    }
+
+    .story-text {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    @media (min-width: 600px) {
+      .story-text {
+        font-size: 1.1rem;
+      }
+    }
+
+    .restart-btn {
+      background: #8b0000;
+      color: gold;
+      padding: 14px 24px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    @media (min-width: 600px) {
+      .restart-btn {
+        font-size: 1.2rem;
+        padding: 16px 30px;
+      }
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
+    }
+
+    /* Защита от масштабирования на мобильных */
+    input, button {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
   </style>
 </head>
@@ -250,7 +342,7 @@
       <h2>⚔️ Final Battle: The Last Stand</h2>
       <div class="voldemort">"You cannot win, Harry!"</div>
 
-      <p style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; line-height: 1.7;">
+      <p class="story-text">
         One night in May, Harry Potter returned to Hogwarts. The sky was dark, and the air was cold. He walked into the Great Hall and saw Lord Voldemort waiting for him. They looked at each other. Then, they started to fight with magic. Spells flew everywhere — red, green, and golden lights filled the room. Harry remembered his friends. He felt brave. In the end, Harry said, "Expelliarmus!" and Voldemort’s wand flew into the air. The Dark Lord disappeared. The war was over. Hogwarts was safe again.
       </p>
 
@@ -266,11 +358,11 @@
     <!-- Победа -->
     <div id="victory" class="task">
       <h2>🏆 Victory!</h2>
-      <p style="color:#d4af37; font-size:1.3rem;">
+      <p style="color:#d4af37; font-size:1.2rem;">
         You found all Horcruxes and defeated Voldemort!<br>
         Well done, wizard! Hogwarts is safe because of you!
       </p>
-      <button onclick="location.reload()" style="background:#8b0000; color:gold; padding:12px 24px; margin-top:20px;">Play Again</button>
+      <button onclick="location.reload()" class="restart-btn">Play Again</button>
     </div>
   </div>
 
@@ -281,6 +373,8 @@
     function showTask(id) {
       document.querySelectorAll('.task').forEach(t => t.classList.remove('active'));
       document.getElementById(id).classList.add('active');
+      // Прокрутка к началу задания (удобно на мобильных)
+      document.querySelector('.container').scrollIntoView({ behavior: 'smooth' });
     }
 
     function checkAnswer(taskNum, isCorrect) {
@@ -291,8 +385,10 @@
         feedback.className = "feedback success";
 
         // Добавляем крестраж
-        horcruxElements[horcruxesFound].classList.add('found');
-        horcruxesFound++;
+        if (horcruxesFound < 7) {
+          horcruxElements[horcruxesFound].classList.add('found');
+          horcruxesFound++;
+        }
 
         // Через 1.5 секунды — следующее задание
         setTimeout(() => {
