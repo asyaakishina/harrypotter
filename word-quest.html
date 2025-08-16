@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Harry Potter: The English Horcrux Hunt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Medieval+Sharp&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1589884672035-638e58177a88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+      background-size: cover;
+      color: #e0d0a0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: rgba(20, 20, 40, 0.85);
+      backdrop-filter: blur(10px);
+      border: 3px solid #8b0000;
+      border-radius: 20px;
+      padding: 30px;
+      width: 100%;
+      max-width: 700px;
+      box-shadow: 0 0 30px rgba(139, 0, 0, 0.6);
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    h1 {
+      font-family: 'Medieval Sharp', cursive;
+      font-size: 2.8rem;
+      color: #d4af37;
+      text-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-family: 'Medieval Sharp', cursive;
+      color: #964B00;
+      margin: 20px 0;
+    }
+
+    p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .instructions {
+      background: rgba(139, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .horcruxes {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .horcrux {
+      width: 60px;
+      height: 60px;
+      background: url('https://img.freepik.com/premium-vector/magic-dark-ancient-symbol_91843-35.jpg?w=300') no-repeat center;
+      background-size: cover;
+      border: 2px solid #555;
+      border-radius: 50%;
+      opacity: 0.3;
+      box-shadow: none;
+      transition: 0.3s;
+    }
+
+    .horcrux.found {
+      opacity: 1;
+      border-color: #d4af37;
+      box-shadow: 0 0 15px gold;
+    }
+
+    .task {
+      display: none;
+      animation: fadeIn 0.5s;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .option-btn {
+      background: rgba(100, 0, 0, 0.6);
+      color: #fff;
+      padding: 12px;
+      border: 2px solid #8b0000;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      text-align: left;
+      font-size: 1.1rem;
+    }
+
+    .option-btn:hover {
+      background: #8b0000;
+      transform: translateX(5px);
+    }
+
+    .feedback {
+      margin: 20px 0;
+      font-weight: bold;
+      min-height: 24px;
+      font-size: 1.2rem;
+    }
+
+    .success { color: #32cd32; }
+    .error { color: #ff6b6b; }
+
+    .voldemort {
+      font-size: 1.8rem;
+      color: #8b0000;
+      text-shadow: 0 0 10px red;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Harry Potter: The English Horcrux Hunt</h1>
+    <p>Welcome, young wizard! Find all 7 Horcruxes by completing English tasks. Then defeat Voldemort!</p>
+
+    <div class="instructions">
+      Choose the correct answer to pass each task and recover a Horcrux.
+    </div>
+
+    <!-- Крестражи -->
+    <div class="horcruxes" id="horcruxTracker">
+      <div class="horcrux"></div>
+      <div class="horcrux"></div>
+      <div class="horcrux"></div>
+      <div class="horcrux"></div>
+      <div class="horcrux"></div>
+      <div class="horcrux"></div>
+      <div class="horcrux"></div>
+    </div>
+
+    <!-- Задания -->
+    <div id="task1" class="task active">
+      <h2>Task 1: Tom Riddle's Diary</h2>
+      <p>Choose the correct sentence:</p>
+      <div class="options">
+        <div class="option-btn" onclick="checkAnswer(1, false)">A) Harry go to Hogwarts every year.</div>
+        <div class="option-btn" onclick="checkAnswer(1, true)">B) Harry goes to Hogwarts every year.</div>
+        <div class="option-btn" onclick="checkAnswer(1, false)">C) Harry is go to Hogwarts.</div>
+      </div>
+      <div class="feedback" id="f1"></div>
+    </div>
+
+    <div id="task2" class="task">
+      <h2>Task 2: Marvolo Gaunt's Ring</h2>
+      <p>What is the plural of "mouse"?</p>
+      <div class="options">
+        <div class="option-btn" onclick="checkAnswer(2, false)">A) mouses</div>
+        <div class="option-btn" onclick="checkAnswer(2, true)">B) mice</div>
+        <div class="option-btn" onclick="checkAnswer(2, false)">C) mices</div>
+      </div>
+      <div class="feedback" id="f2"></div>
+    </div>
+
+    <div id="task3" class="task">
+      <h2>Task 3: Slytherin's Locket</h2>
+      <p>Complete: "She is afraid ___ spiders."</p>
+      <div class="options">
+        <div class="option-btn" onclick="checkAnswer(3, false)">A) for</div>
+        <div class="option-btn" onclick="checkAnswer(3, true)">B) of</div>
+        <div class="option-btn" onclick="checkAnswer(3, false)">C) from</div>
+      </div>
+      <div class="feedback" id="f3"></div>
+    </div>
+
+    <div id="task4" class="task">
+      <h2>Task 4: Hufflepuff's Cup</h2>
+      <p>What is the past of "eat"?</p>
+      <div class="options">
+        <div class="option-btn" onclick="checkAnswer(4, true)">A) ate</div>
+        <div class="option-btn" onclick="checkAnswer(4, false)">B) eaten</div>
+        <div class="option-btn" onclick="checkAnswer(4, false)">C) eated</div>
+      </div>
+      <div class="feedback" id="f4"></div>
+    </div>
+
+    <div id="task5" class="task">
+      <h2>Task 5: Ravenclaw's Diadem</h2>
+      <p>What is the opposite of "brave"?</p>
+      <div class="options">
+        <div class="option-btn" onclick="checkAnswer(5, false)">A) strong</div>
+        <div class="option-btn" onclick="checkAnswer(5, true)">B) cowardly</div>
+        <div class="option-btn" onclick="checkAnswer(5, false)">C) kind</div>
+      </div>
+      <div class="feedback" id="f5"></div>
+    </div>
+
+    <div id="task6" class="task">
+      <h2>Task 6: Nagini</h2>
+      <p>Complete: "If I ___ you, I would study more."</p>
+      <div class="options">
+        <div class="option-btn" onclick="checkAnswer(6, false)">A) am</div>
+        <div class="option-btn" onclick="checkAnswer(6, true)">B) were</div>
+        <div class="option-btn" onclick="checkAnswer(6, false)">C) was</div>
+      </div>
+      <div class="feedback" id="f6"></div>
+    </div>
+
+    <div id="task7" class="task">
+      <h2>Task 7: Voldemort's Snake</h2>
+      <p>Choose the correct article: "He is ___ honest man."</p>
+      <div class="options">
+        <div class="option-btn" onclick="checkAnswer(7, false)">A) a</div>
+        <div class="option-btn" onclick="checkAnswer(7, true)">B) an</div>
+        <div class="option-btn" onclick="checkAnswer(7, false)">C) the</div>
+      </div>
+      <div class="feedback" id="f7"></div>
+    </div>
+
+    <!-- Финальная битва -->
+    <div id="finalBattle" class="task">
+      <h2>⚔️ Final Battle: The Last Stand</h2>
+      <div class="voldemort">"You cannot win, Harry!"</div>
+
+      <p style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; line-height: 1.7;">
+        One night in May, Harry Potter returned to Hogwarts. The sky was dark, and the air was cold. He walked into the Great Hall and saw Lord Voldemort waiting for him. They looked at each other. Then, they started to fight with magic. Spells flew everywhere — red, green, and golden lights filled the room. Harry remembered his friends. He felt brave. In the end, Harry said, "Expelliarmus!" and Voldemort’s wand flew into the air. The Dark Lord disappeared. The war was over. Hogwarts was safe again.
+      </p>
+
+      <p><strong>Choose the best title for this story:</strong></p>
+      <div class="options">
+        <div class="option-btn" onclick="checkFinal('A')">A) Harry Potter and the Battle for Hogwarts</div>
+        <div class="option-btn" onclick="checkFinal('B')">B) A School Trip to London</div>
+        <div class="option-btn" onclick="checkFinal('C')">C) How to Make a Magic Potion</div>
+      </div>
+      <div class="feedback" id="fFinal"></div>
+    </div>
+
+    <!-- Победа -->
+    <div id="victory" class="task">
+      <h2>🏆 Victory!</h2>
+      <p style="color:#d4af37; font-size:1.3rem;">
+        You found all Horcruxes and defeated Voldemort!<br>
+        Well done, wizard! Hogwarts is safe because of you!
+      </p>
+      <button onclick="location.reload()" style="background:#8b0000; color:gold; padding:12px 24px; margin-top:20px;">Play Again</button>
+    </div>
+  </div>
+
+  <script>
+    let horcruxesFound = 0;
+    const horcruxElements = document.querySelectorAll('.horcrux');
+
+    function showTask(id) {
+      document.querySelectorAll('.task').forEach(t => t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function checkAnswer(taskNum, isCorrect) {
+      const feedback = document.getElementById(`f${taskNum}`);
+
+      if (isCorrect) {
+        feedback.textContent = "✅ Correct! You found a Horcrux!";
+        feedback.className = "feedback success";
+
+        // Добавляем крестраж
+        horcruxElements[horcruxesFound].classList.add('found');
+        horcruxesFound++;
+
+        // Через 1.5 секунды — следующее задание
+        setTimeout(() => {
+          if (taskNum < 7) {
+            showTask(`task${taskNum + 1}`);
+          } else {
+            showTask('finalBattle');
+          }
+        }, 1500);
+      } else {
+        feedback.textContent = "❌ Wrong. Try again!";
+        feedback.className = "feedback error";
+      }
+    }
+
+    function checkFinal(choice) {
+      const feedback = document.getElementById('fFinal');
+      if (choice === 'A') {
+        feedback.textContent = "⚡ Expelliarmus! You defeated Voldemort!";
+        feedback.className = "feedback success";
+        setTimeout(() => showTask('victory'), 1500);
+      } else {
+        feedback.textContent = "🔥 That’s not the right story. Try again!";
+        feedback.className = "feedback error";
+      }
+    }
+
+    // Показываем первое задание
+    showTask('task1');
+  </script>
+</body>
+</html>
